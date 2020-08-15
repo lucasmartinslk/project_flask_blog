@@ -25,7 +25,11 @@
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="#">Home</a></li>
             <li role="presentation"><a href="#">About</a></li>
-            <li role="presentation"><a href="#">Contact</a></li>
+            {% if current_user.is_authenticated %}
+            <li role="presentation"><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li role="presentation"><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
           </ul>
         </nav>
         <h3 class="text-muted">Beguns Chat</h3>
@@ -47,7 +51,7 @@
       {% endblock %}
 
       <footer class="footer">
-        <p>&copy; 2016 Company, Inc.</p>
+        <p>&copy; 2020 Bagunça Company, Inc.</p>
       </footer>
 
     </div> <!-- /container -->

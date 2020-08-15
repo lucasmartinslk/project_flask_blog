@@ -1,6 +1,6 @@
 from app import app, db, lm
-from flask_login import login_user
-from flask import render_template, flash
+from flask_login import login_user, logout_user
+from flask import render_template, flash, url_for, redirect
 from app.models.forms import LoginForm
 from app.models.tables import User
 
@@ -24,10 +24,10 @@ def login():
         if user and user.password == form.password.data:
             login_user(user)
             flash("Logado!")
+            return redirect(url_for("index"))
         else:
             flash("Login Inválido")
-    else:
-        print(form.errors)
+
     return render_template('login.html', form=form)
 
 
@@ -37,3 +37,10 @@ def teste(info):
     r = User.query.filter_by(username='lukita').all()
     print(r)
     return "OK"
+
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    flash("Desconectado")
+    return redirect(url_for("index"))
