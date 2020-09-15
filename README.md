@@ -1,4 +1,4 @@
-# project-flask
+# project_flask
 Projeto Flask
 
 Projeto baseado nas Vídeos Aulas da Júlia Rizza.
